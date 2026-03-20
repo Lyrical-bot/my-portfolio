@@ -1,1 +1,380 @@
-<h1>나의 새로운 포트폴리오 페이지</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Cloud Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #06b6d4;
+            --secondary: #3b82f6;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, rgba(15, 23, 42, 1) 70%);
+        }
+
+        .skill-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #334155;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* Animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full z-50 px-6 py-4 bg-slate-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text tracking-tighter">DATA_LAB</div>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#expertise" class="nav-link">Expertise</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="md:hidden text-2xl" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-slate-900 z-40 hidden flex-col items-center justify-center space-y-8 text-2xl font-semibold">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#expertise" class="mobile-nav-link">Expertise</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <button id="closeBtn" class="absolute top-6 right-6 text-3xl">&times;</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 hero-bg px-6">
+        <div class="max-w-5xl text-center">
+            <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-cyan-400 uppercase bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                AI & Cloud Solutions Architect
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                데이터로 미래를 설계하고,<br>
+                <span class="gradient-text">지능형 클라우드</span>를 구축합니다.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                머신러닝 모델링부터 대규모 클라우드 아키텍처 설계까지, 
+                복잡한 데이터를 가치 있는 비즈니스 인사이트로 전환하는 전문가입니다.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-slate-900 font-bold rounded-lg transition-all">
+                    프로젝트 보기
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 border border-white/20 hover:bg-white/5 font-bold rounded-lg transition-all">
+                    문의하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-24 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Expertise</h2>
+                <div class="h-1.5 w-20 bg-cyan-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- AI / ML -->
+                <div class="glass-card p-8 rounded-2xl reveal">
+                    <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 text-cyan-400 text-2xl">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI & Machine Learning</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                        Deep Learning 모델 최적화, 자연어 처리(NLP), 컴퓨터 비전 모델 개발 및 운영 환경 배포(MLOps).
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i> PyTorch / TensorFlow</li>
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i> LLM Fine-tuning</li>
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i> Scikit-Learn</li>
+                    </ul>
+                </div>
+
+                <!-- Cloud -->
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-400 text-2xl">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Cloud Computing</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                        확장 가능한 대규모 마이크로서비스 아키텍처(MSA) 설계 및 컨테이너 기반 클라우드 네이티브 솔루션 구축.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> AWS / GCP / Azure</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Kubernetes & Docker</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Terraform (IaC)</li>
+                    </ul>
+                </div>
+
+                <!-- Data Analysis -->
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 text-purple-400 text-2xl">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Data Analytics</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                        빅데이터 파이프라인(ETL) 구축 및 데이터 시각화 라이브러리를 활용한 의사결정 지원 시스템 개발.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-2"></i> Spark / Hadoop</li>
+                        <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-2"></i> SQL & NoSQL Database</li>
+                        <li class="flex items-center"><i class="fas fa-check text-purple-500 mr-2"></i> Tableau / PowerBI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-24 px-6 bg-slate-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+                <div class="reveal">
+                    <h3 class="text-2xl font-bold mb-8">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python (PyTorch/Pandas)</span>
+                                <span class="text-cyan-400">95%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">AWS Solutions Architecture</span>
+                                <span class="text-cyan-400">90%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">MLOps & DevOps</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-8 italic text-slate-500">"Data is the new oil, but AI is the refinery."</h3>
+                    <p class="text-slate-400 leading-loose">
+                        기술은 수단일 뿐이며, 비즈니스의 문제를 해결하는 것이 본질이라고 믿습니다. 
+                        단순한 구현을 넘어 효율성, 보안, 확장성을 모두 고려한 최적의 아키텍처를 제안합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6 bg-slate-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                    <div class="h-1.5 w-20 bg-cyan-500 rounded-full"></div>
+                </div>
+                <p class="text-slate-400 mt-4 md:mt-0 max-w-md">실제 운영 환경에 배포된 데이터 기반 솔루션들입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="glass-card overflow-hidden rounded-2xl flex flex-col md:flex-row reveal">
+                    <div class="md:w-1/2 bg-slate-800 flex items-center justify-center p-8">
+                        <div class="text-6xl text-cyan-400 opacity-50"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <div class="text-xs font-bold text-cyan-400 uppercase mb-2">AI & Finance</div>
+                        <h4 class="text-xl font-bold mb-3">실시간 주가 예측 엔진</h4>
+                        <p class="text-slate-400 text-sm mb-6">LSTM과 Transformer 아키텍처를 활용하여 실시간 시장 데이터를 분석하고 변동성을 예측하는 파이프라인을 구축했습니다.</p>
+                        <div class="flex gap-2 mb-6 flex-wrap">
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">Python</span>
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">Kafka</span>
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">Redis</span>
+                        </div>
+                        <a href="#" class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">Case Study →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card overflow-hidden rounded-2xl flex flex-col md:flex-row reveal" style="transition-delay: 0.1s;">
+                    <div class="md:w-1/2 bg-slate-800 flex items-center justify-center p-8">
+                        <div class="text-6xl text-blue-400 opacity-50"><i class="fas fa-microchip"></i></div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <div class="text-xs font-bold text-blue-400 uppercase mb-2">Cloud & MLOps</div>
+                        <h4 class="text-xl font-bold mb-3">자동화된 ML 워크플로우</h4>
+                        <p class="text-slate-400 text-sm mb-6">Kubeflow를 사용하여 데이터 수집부터 모델 학습, 배포까지 전 과정을 자동화한 엔드투엔드 MLOps 시스템입니다.</p>
+                        <div class="flex gap-2 mb-6 flex-wrap">
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">Kubernetes</span>
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">AWS S3</span>
+                            <span class="px-2 py-1 bg-slate-800 text-[10px] rounded">Docker</span>
+                        </div>
+                        <a href="#" class="text-sm font-bold border-b-2 border-blue-500 pb-1 hover:text-blue-400 transition-colors">Case Study →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-slate-900 border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-bold mb-8">협업 준비가 되셨나요?</h2>
+            <p class="text-slate-400 mb-12 text-lg">새로운 아이디어나 데이터 과제에 대해 이야기 나누는 것을 환영합니다.</p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                <a href="mailto:contact@example.com" class="flex items-center gap-4 hover:text-cyan-400 transition-colors group">
+                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-slate-900 transition-all">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="text-lg">contact@datalab.ai</span>
+                </a>
+                <div class="flex gap-6 text-2xl">
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center text-slate-600 text-sm border-t border-white/5">
+        &copy; 2026 Data Lab Portfolio. All rights reserved.
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                    
+                    // Trigger skill bar animation if visible
+                    const bars = reveals[i].querySelectorAll('.skill-progress');
+                    bars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeBtn = document.getElementById('closeBtn');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+
+        const hideMenu = () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        };
+
+        closeBtn.addEventListener('click', hideMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+        // Smooth Scroll Enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
